@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bar-of-progress {
+    z-index: 50;
+}
+
+.md-editor-content-editor,.CodeMirror-code{
+    height: 400px;
+}

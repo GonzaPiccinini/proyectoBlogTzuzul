@@ -1,66 +1,17 @@
-import PostsPageUp from "../../components/Posts/Posts"
-import Image from "next/image"
 import Link from "next/link"
-import Filter from "../../components/Posts/Filter"
-import { FaCalendarDay } from 'react-icons/fa'
+import Image from 'next/image'
 import { BsCircleFill } from 'react-icons/bs'
-import { GrFormSearch } from 'react-icons/gr'
-import { useEffect, useState } from "react"
+import { FaCalendarDay } from 'react-icons/fa'
 
-export const getServerSideProps = async (context) => {
-    const res = await fetch(`http://${context.req.headers.host}/api/posts`)
-
-    const data = await res.json()
-
-    return {
-        props: {
-            posts: data
-        }
-    }
-}
-
-const PostsPage = ({ posts }) => {
-    const [search, setSearch] = useState('')
-    const [dataPosts, setDataPosts] = useState([])
-
-    useEffect(() => {
-        setDataPosts(posts)
-    }, [])
-
-    const filter = (searchTerm) => {
-        let searchResults = posts.filter(post => {
-            if (post.title.toString().toLowerCase().includes(searchTerm.toLowerCase())) {
-                return post
-            }
-        })
-        setDataPosts(searchResults)
-        console.log(dataPosts)
-    }
-
-    const handleChange = e => {
-        setSearch(e.target.value)
-        filter(e.target.value)
-    }
+const HomePosts = ({ posts }) => {
 
     return (
-        <div className="min-h-screen">
-            <PostsPageUp />
-            <div className='mt-5 w-full flex flex-col md:flex-row justify-end gap-5 md:gap-32 items-center'>
-                <div className='relative w-4/5 md:w-2/5 h-auto flex justify-end items-center'>
-                    <input
-                        id="inputSearch"
-                        autoComplete="off"
-                        className='outline-none w-full px-3 py-2 border-[1px] border-solid border-black border-opacity-20 rounded-md focus:border-sky-500'
-                        value={search}
-                        placeholder='Buscar'
-                        onChange={handleChange}
-                    />
-                    <label htmlFor="inputSearch" className='absolute pr-3'><GrFormSearch size={20} /></label>
-                </div>
-                <Filter />
+        <div className="mt-5">
+            <div>
+                <h1 className="text-xl font-medium">Publicaciones destacadas</h1>
             </div>
             <div className="mt-5 grid grid-cols-1 md:grid-cols-3 justify-items-center">
-                {dataPosts.map(post => {
+                {posts.map(post => {
                     return (
                         <div key={post.id}>
                             <Link href={`/publicaciones/${post.id}`}>
@@ -95,4 +46,4 @@ const PostsPage = ({ posts }) => {
     )
 }
 
-export default PostsPage
+export default HomePosts

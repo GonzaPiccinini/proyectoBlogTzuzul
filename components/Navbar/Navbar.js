@@ -14,23 +14,25 @@ const Navbar = () => {
     }
 
     return (
-        <div className="fixed top-0 bg-white w-screen h-16 flex items-center border-b-[1px] border-solid border-black border-opacity-10 shadow-sm shadow-[0_1px_6px_rgb(0,0,0,0.1)] md:justify-center">
+        <div className="fixed z-50 top-0 bg-white w-screen h-16 flex items-center border-b-[1px] border-solid border-black border-opacity-10 shadow-sm shadow-[0_1px_6px_rgb(0,0,0,0.1)] md:justify-center">
             <nav className="w-full flex items-center md:justify-between">
-                <div className="w-auto flex items-center md:ml-14 cursor-pointer">
+                <div className="w-auto flex items-center mr-12 md:mr-0 md:ml-14 cursor-pointer">
                     <Link href='/'>
                         <Image src='/logo.svg' width={225} height={64} />
                     </Link>
                 </div>
                 <div className="md:w-[80%] flex justify-end gap-5 items-center">
                     {!session
-                        ? <div className="bg-sky-500 absolute md:static right-20 min-w-max list-none px-3 py-2 rounded-md text-white hover:bg-sky-400 duration-150 cursor-pointer">
+                        ? <div className="bg-sky-500 absolute md:static right-[5rem] min-w-max list-none px-2 py-1 md:px-3 md:py-2 rounded-md text-white hover:bg-sky-400 duration-150 cursor-pointer">
                             <button className="font-bold" onClick={() => signIn()}>Iniciar sesión</button>
                           </div>
-                        : <div className="absolute md:static right-20"><AccountIcon /></div>}
-                    <ul className={`flex flex-col justify-start pt-10 items-center gap-5 overflow-y-hidden bg-white text-xl font-bold ${isNavOpen ? 'absolute left-0 top-16 h-screen w-screen' : 'h-0'} md:pt-0 md:pr-20 md:bg-white md:flex-row md:justify-end md:h-full md:items-center md:gap-6`}>
-                        <li className="text-[rgb(10, 40, 62)] hover:text-gray-700 duration-150 cursor-pointer"><Link href='/'>Inicio</Link></li>
-                        <li className="text-[rgb(10, 40, 62)] hover:text-gray-700 duration-150 cursor-pointer"><Link href='/publicaciones'>Publicaciones</Link></li>
-                        <li className="text-[rgb(10, 40, 62)] hover:text-gray-700 duration-150 cursor-pointer"><Link href='/admin'>Admin</Link></li>
+                        : <div><AccountIcon /></div>}
+                    <ul className={`flex flex-col justify-start pt-10 items-center gap-5 overflow-y-hidden bg-white text-2xl font-bold ${isNavOpen ? 'absolute md:static left-0 top-16 h-screen w-screen md:h-auto md:w-auto' : 'h-0 w-0 md:w-auto'} md:pt-0 md:pr-20 md:bg-white md:flex-row md:justify-end md:h-full md:items-center md:gap-6`}>
+                        <li onClick={() => setIsNavOpen(!isNavOpen)} className="text-[rgb(10, 40, 62)] hover:text-gray-500 duration-150 cursor-pointer"><Link href='/'>Inicio</Link></li>
+                        <li onClick={() => setIsNavOpen(!isNavOpen)} className="text-[rgb(10, 40, 62)] hover:text-gray-500 duration-150 cursor-pointer"><Link href='/publicaciones'>Publicaciones</Link></li>
+                        {session?.user?.role === 'admin'
+                            ? <li onClick={() => setIsNavOpen(!isNavOpen)} className="text-[rgb(10, 40, 62)] hover:text-gray-500 duration-150 cursor-pointer"><Link href='/admin'>Admin</Link></li>
+                            : null}
                     </ul>
                 </div>
                 <ResponsiveButton isOpen={isNavOpen} handleOpen={openNav} />

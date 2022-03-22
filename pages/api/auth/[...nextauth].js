@@ -52,7 +52,6 @@ export default NextAuth({
       
       if (token?.accessToken && token?.id && token?.role) {
         
-        session.user.accessToken = token.accessToken
         session.user.id = token.id
         session.user.role = token.role
         session.user.name = token.name

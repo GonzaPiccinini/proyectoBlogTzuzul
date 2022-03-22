@@ -1,9 +1,11 @@
-const Posts = () => {
+const PostsPageUp = () => {
     return (
-        <div className="py-5 border-solid border-black border-b-[1px] border-opacity-20">
-            <h1 className="text-xl text-[rgb(10, 40, 62)] font-medium">Publicaciones</h1>
+        <div>
+            <div className="py-5 border-solid border-black border-b-[1px] border-opacity-20">
+                <h1 className="text-xl text-[rgb(10, 40, 62)] font-medium">Publicaciones</h1>
+            </div>
         </div>
     )
 }
 
-export default Posts
+export default PostsPageUp

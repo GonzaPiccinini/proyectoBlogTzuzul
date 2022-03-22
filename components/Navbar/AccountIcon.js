@@ -3,13 +3,14 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useSession } from 'next-auth/react'
 
-
 const AccountIcon = () => {
     const { data: session } = useSession()
 
     return (
         <Link href='/perfil'>
-            <VscAccount className='bg-white rounded-full text-black cursor-pointer' size={35}/>
+            <div className="relative w-[30px] h-[30px] rounded-full cursor-pointer border-[1px] border-solid border-black border-opacity-10">
+                <Image className='rounded-full' src={session.user.image} layout='fill' objectFit='cover' />
+            </div>
         </Link>
     )
 }
