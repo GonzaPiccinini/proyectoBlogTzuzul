@@ -4,8 +4,10 @@ import Image from "next/image"
 import AddComment from './AddComment'
 import AddCommentFunction from "./AddCommentFunction"
 import axios from "axios"
+import { useSession } from "next-auth/react"
 
 const Comments = ({ post }) => {
+    const { data: session } = useSession()
     const [comments, setComments] = useState([])
     const [isAddCommentOpen, setIsAddCommentOpen] = useState(false)
 
@@ -23,7 +25,9 @@ const Comments = ({ post }) => {
     }, [])
 
     const openAddComment = () => {
-        setIsAddCommentOpen(!isAddCommentOpen)
+        if (session) {
+            setIsAddCommentOpen(!isAddCommentOpen)
+        }
     }
 
     return (
