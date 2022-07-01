@@ -16,7 +16,7 @@ export const getServerSideProps = async ({ req, query }) => {
     }
 }
 
-const idCategories = ({ posts }) => {
+const IdCategories = ({ posts }) => {
 
     return (
         <div>
@@ -60,4 +60,4 @@ const idCategories = ({ posts }) => {
     )
 }
 
-export default idCategories
+export default IdCategories

@@ -58,7 +58,7 @@ const Comments = ({ post }) => {
                                 </div>
                             </div>
                             <div>
-                                <p className="font-normal">"{comment.content}"</p>
+                                <p className="font-normal">&quot;{comment.content}&quot;</p>
                             </div>
                         </div>
                     )

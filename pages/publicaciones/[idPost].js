@@ -2,7 +2,6 @@ import Image from 'next/image'
 import { BsCircleFill } from 'react-icons/bs'
 import { HiArrowLeft } from 'react-icons/hi'
 import { FaCalendarDay } from 'react-icons/fa'
-import PostsPageUp from '../../components/Posts/Posts'
 import Comments from '../../components/Posts/Comments'
 import ReactMarkdown from 'react-markdown'
 import { useRouter } from 'next/router'
@@ -19,7 +18,7 @@ export const getServerSideProps = async ({ req, query }) => {
     }
 }
 
-const idPosts = ({ post }) => {
+const IdPosts = ({ post }) => {
     const router = useRouter()
 
     return (
@@ -93,4 +92,4 @@ const idPosts = ({ post }) => {
     )
 }
 
-export default idPosts
+export default IdPosts
